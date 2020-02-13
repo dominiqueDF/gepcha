@@ -12,7 +12,7 @@
 			font-size: 0.8em;
 			margin-left: 50px;
 			margin-right: 50px;
-			/* margin-bottom: 30px; */
+			margin-bottom: 30px;
 			display: flex;
 		}
 		.cat > p {
@@ -50,7 +50,7 @@
 							{{ cat.birthday | date("d/m/Y") }},
 							{{ cat.getAge() }}
 							ans)</p>
-						{# <img src="data:image/png;base64,{{ cat.getPicture }}"/> #}
+						<img src="data:image/png;base64,{{ cat.getPicture }}"/>
 					</div>
 				{% endfor %}
 			{% endfor %}
