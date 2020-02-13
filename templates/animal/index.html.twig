@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Animaux
+{% endblock %}
+
+{% block stylesheets %}
+	<style>
+		.owner {
+			font-weight: bold;
+		}
+		.cat {
+			font-size: 0.8em;
+			margin-left: 50px;
+			margin-right: 50px;
+			/* margin-bottom: 30px; */
+			display: flex;
+		}
+		.cat > p {
+			flex: 2;
+		}
+		.cat > img {
+			float: right;
+		}
+	</style>
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="jumbotron">
+			<h1>Liste des animaux</h1>
+		</div>
+		<table class="table table-hover">
+			{% for owner in owners %}
+				<p class="owner">
+					{{ owner.title }}
+					{{ owner.firstName }}
+					{{ owner.lastName }}
+				</p>
+				{% for cat in owner.cats %}
+					<div class="cat">
+						<p>
+							{{ cat.name }}
+							({{ cat.sex }},
+							{% if cat.sex=="male" %}
+								né
+							{% else %}
+								née
+							{% endif %}
+							le
+							{{ cat.birthday | date("d/m/Y") }},
+							{{ cat.getAge() }}
+							ans)</p>
+						{# <img src="data:image/png;base64,{{ cat.getPicture }}"/> #}
+					</div>
+				{% endfor %}
+			{% endfor %}
+		</table>
+	</div>
+{% endblock %}
