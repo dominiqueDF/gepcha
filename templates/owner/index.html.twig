@@ -1,51 +1,55 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Owner index{% endblock %}
+{% block title %}Liste des propriétaires
+{% endblock %}
 
 {% block body %}
-    <h1>Owner index</h1>
+	<div class="container">
+		<div class="jumbotron">
+			<h1>Liste des propriétaires</h1>
+		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>N°</th>
+					<th>Civilité</th>
+					<th>Nom</th>
+					<th>Prénom</th>
+					<th>Email</th>
+					<th>Téléphone</th>
+					<th>Adresse</th>
+					<th>Complément d'adresse</th>
+					<th>Ville</th>
+					<th>Code postaux</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for owner in owners %}
+					<tr>
+						<td>{{ owner.id }}</td>
+						<td>{{ owner.title }}</td>
+						<td>{{ owner.lastName }}</td>
+						<td>{{ owner.firstName }}</td>
+						<td>{{ owner.email }}</td>
+						<td>{{ owner.phoneNumber }}</td>
+						<td>{{ owner.addressLine1 }}</td>
+						<td>{{ owner.addressLine2 }}</td>
+						<td>{{ owner.city }}</td>
+						<td>{{ owner.postCode }}</td>
+						<td>
+							<a href="{{ path('owner_show', {'id': owner.id}) }}">Afficher</a>
+							<a href="{{ path('owner_edit', {'id': owner.id}) }}">Editer</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="11">Aucun propriétaire</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>LastName</th>
-                <th>FirstName</th>
-                <th>Email</th>
-                <th>PhoneNumber</th>
-                <th>AddressLine1</th>
-                <th>AddressLine2</th>
-                <th>City</th>
-                <th>PostCode</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for owner in owners %}
-            <tr>
-                <td>{{ owner.id }}</td>
-                <td>{{ owner.title }}</td>
-                <td>{{ owner.lastName }}</td>
-                <td>{{ owner.firstName }}</td>
-                <td>{{ owner.email }}</td>
-                <td>{{ owner.phoneNumber }}</td>
-                <td>{{ owner.addressLine1 }}</td>
-                <td>{{ owner.addressLine2 }}</td>
-                <td>{{ owner.city }}</td>
-                <td>{{ owner.postCode }}</td>
-                <td>
-                    <a href="{{ path('owner_show', {'id': owner.id}) }}">show</a>
-                    <a href="{{ path('owner_edit', {'id': owner.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="11">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('owner_new') }}">Create new</a>
+		<a href="{{ path('owner_new') }}">Création d'un nouveau propriétaire</a>
+	</div>
 {% endblock %}

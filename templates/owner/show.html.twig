@@ -1,58 +1,66 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Owner{% endblock %}
+{% block title %}Propriétaire
+{% endblock %}
 
 {% block body %}
-    <h1>Owner</h1>
+	<div class="container">
+		<div class="jumbotron">
+			<h1>Propriétaire</h1>
+		</div>
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Civilité</th>
+					<td>{{ owner.title }}</td>
+				</tr>
+				<tr>
+					<th>Nom</th>
+					<td>{{ owner.lastName }}</td>
+				</tr>
+				<tr>
+					<th>Prénom</th>
+					<td>{{ owner.firstName }}</td>
+				</tr>
+				<tr>
+					<th>Email</th>
+					<td>{{ owner.email }}</td>
+				</tr>
+				<tr>
+					<th>Téléphone</th>
+					<td>{{ owner.phoneNumber }}</td>
+				</tr>
+				<tr>
+					<th>Adresse</th>
+					<td>{{ owner.addressLine1 }}</td>
+				</tr>
+				<tr>
+					<th>Complément d'adresse</th>
+					<td>{{ owner.addressLine2 }}</td>
+				</tr>
+				<tr>
+					<th>Ville</th>
+					<td>{{ owner.city }}</td>
+				</tr>
+				<tr>
+					<th>Code postal</th>
+					<td>{{ owner.postCode }}</td>
+				</tr>
+			</tbody>
+		</table>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ owner.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ owner.title }}</td>
-            </tr>
-            <tr>
-                <th>LastName</th>
-                <td>{{ owner.lastName }}</td>
-            </tr>
-            <tr>
-                <th>FirstName</th>
-                <td>{{ owner.firstName }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ owner.email }}</td>
-            </tr>
-            <tr>
-                <th>PhoneNumber</th>
-                <td>{{ owner.phoneNumber }}</td>
-            </tr>
-            <tr>
-                <th>AddressLine1</th>
-                <td>{{ owner.addressLine1 }}</td>
-            </tr>
-            <tr>
-                <th>AddressLine2</th>
-                <td>{{ owner.addressLine2 }}</td>
-            </tr>
-            <tr>
-                <th>City</th>
-                <td>{{ owner.city }}</td>
-            </tr>
-            <tr>
-                <th>PostCode</th>
-                <td>{{ owner.postCode }}</td>
-            </tr>
-        </tbody>
-    </table>
+		<div class="row">
+			<div class="col-lg-4">
+				<a href="{{ path('owner_index') }}">Retourner à la liste des propriétaires</a>
+			</div>
+			<div class="col-lg-4">
 
-    <a href="{{ path('owner_index') }}">back to list</a>
+				<a href="{{ path('owner_edit', {'id': owner.id}) }}">Editer</a>
+			</div>
+			<div class="col-lg-4">
 
-    <a href="{{ path('owner_edit', {'id': owner.id}) }}">edit</a>
-
-    {{ include('owner/_delete_form.html.twig') }}
+				{{ include('owner/_delete_form.html.twig') }}
+			</div>
+		</div>
+	</div>
 {% endblock %}

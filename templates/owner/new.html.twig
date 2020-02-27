@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Owner{% endblock %}
+{% block title %}Nouveau propriétaire
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Owner</h1>
+	<div class="container">
+		<div class="jumbotron">
+			<h1>Création d'un propriétaire</h1>
+		</div>
+		{{ include('owner/_form.html.twig') }}
 
-    {{ include('owner/_form.html.twig') }}
-
-    <a href="{{ path('owner_index') }}">back to list</a>
+		<a href="{{ path('owner_index') }}">Retourner à la liste des propriétaires</a>
+	</div>
 {% endblock %}
